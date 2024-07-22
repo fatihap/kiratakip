@@ -170,7 +170,7 @@ class _TenantListPageState extends State<TenantListPage> {
             ),
           );
           if (newTenant != null) {
-            await dbHelper.insertTenant(newTenant);
+            //await dbHelper.insertTenant(newTenant);
             updateTenantList();
           }
         },
