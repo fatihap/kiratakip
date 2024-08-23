@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:kiratakip/auth/sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'theme.dart'; 
+import 'auth/login/login.dart';
+import 'theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,13 +26,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Landlord App',
         debugShowCheckedModeBanner: false,
-        theme: lightTheme, 
-        darkTheme: darkTheme, 
+        theme: lightTheme,
+        darkTheme: darkTheme,
         themeMode: ThemeMode.system,
-       // home: TenantListPage(),
-   //    home: isFirstLaunch ? const IntroScreen() :  LoginPage(),
-     //
-       home:  LoginPage(),
+        //    home: isFirstLaunch ? const IntroScreen() : LoginPage(),
+        home: LoginScreen(),
+        //   home:  LoginPage(),
       ),
     );
   }

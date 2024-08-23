@@ -81,27 +81,46 @@ class _SignUpPageState extends State<SignUpPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 30),
-                  const Text(
-                    'Kira Takip',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                  Center(
+                    child: Icon(
+                      Icons.house,
+                      size: 80,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: Text(
+                      'Kira Takip',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurpleAccent,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    'Kayıt Ol',
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                  Center(
+                    child: Text(
+                      'Kayıt Ol',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    'Kira takibi hiç bu kadar kolay olmadı',
-                    style: TextStyle(fontSize: 16, color: Colors.black54),
+                  Center(
+                    child: Text(
+                      'Kira takibi hiç bu kadar kolay olmadı',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black54,
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   Row(
                     children: [
                       const Text(
@@ -119,7 +138,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           'giriş yap.',
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.deepPurple,
+                            color: Colors.deepPurpleAccent,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -181,6 +200,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     suffixIcon: IconButton(
                       icon: Icon(
                         _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                        color: Colors.deepPurpleAccent,
                       ),
                       onPressed: _togglePasswordVisibility,
                     ),
@@ -199,6 +219,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     suffixIcon: IconButton(
                       icon: Icon(
                         _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                        color: Colors.deepPurpleAccent,
                       ),
                       onPressed: _togglePasswordVisibility,
                     ),
@@ -217,14 +238,18 @@ class _SignUpPageState extends State<SignUpPage> {
                     onPressed: _signUp,
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
-                      backgroundColor: Colors.deepPurple,
+                      backgroundColor: Colors.deepPurpleAccent,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                     child: const Text(
                       'Kayıt Ol',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -249,8 +274,13 @@ class _SignUpPageState extends State<SignUpPage> {
       obscureText: obscureText,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: TextStyle(color: Colors.deepPurpleAccent),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.deepPurpleAccent),
+          borderRadius: BorderRadius.circular(12),
         ),
         suffixIcon: suffixIcon,
       ),

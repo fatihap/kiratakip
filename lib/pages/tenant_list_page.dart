@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../auth/widgets/sign_in_form.dart';
 import '../classes/constants.dart';
 import '../widgets/addTenantPage/add_tenant_page.dart';
-import 'tenantCard.dart';
+import 'tenant_card.dart';
 import 'tenat_detail_pages/tenant_detail_page.dart';
 
 class TenantListPage extends StatefulWidget {

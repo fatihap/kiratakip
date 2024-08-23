@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:kiratakip/classes/constants.dart';
@@ -242,8 +241,21 @@ Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
       title: const Text('Kiracı Detayları'),
-      actions: [
-        Icon(Icons.info)
+        actions: [
+        IconButton(
+          icon: const Icon(Icons.info),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => TenantInfoPage(
+                  tenantDetails: tenantDetails!,
+                  onEditTap: _navigateToEditTenantPage,
+                  onDeleteTap: _showDeleteConfirmationDialog,
+                ),
+              ),
+            );
+          },
+        ),
       ],
     ),
     
@@ -257,8 +269,6 @@ Widget build(BuildContext context) {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TenantInfoSection(tenantDetails: tenantDetails!),
-                      const SizedBox(height: 16.0),
                       TenantDetailHeader(
                         tenantName:
                             '${tenantDetails!['tenant_name']} ${tenantDetails!['tenant_surname']}',
@@ -275,23 +285,7 @@ Widget build(BuildContext context) {
                   ),
                 ),
               ),
-    floatingActionButton: SpeedDial(
-      animatedIcon: AnimatedIcons.menu_close,
-      backgroundColor: Colors.blue,
-      children: [
-        SpeedDialChild(
-          child: const Icon(Icons.edit),
-          label: 'Düzenle',
-          onTap: _navigateToEditTenantPage,
-        ),
-        SpeedDialChild(
-          child: const Icon(Icons.delete),
-          label: 'Sil',
-          backgroundColor: Colors.red,
-          onTap: _showDeleteConfirmationDialog,
-        ),
-      ],
-    ),
+   
   );
 }
 

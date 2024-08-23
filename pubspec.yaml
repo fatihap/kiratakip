@@ -24,6 +24,8 @@ dependencies:
   http: ^1.2.2
   font_awesome_flutter: ^10.7.0
   circle_nav_bar: ^2.1.0+1
+  get: ^4.6.6
+  iconsax: ^0.0.8
   
 flutter_icons:
   android: true

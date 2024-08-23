@@ -1,48 +1,118 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
-class TenantInfoSection extends StatelessWidget {
+class TenantInfoPage extends StatelessWidget {
   final Map<String, dynamic> tenantDetails;
+  final VoidCallback onEditTap;
+  final VoidCallback onDeleteTap;
 
-  const TenantInfoSection({super.key, required this.tenantDetails});
+  const TenantInfoPage({
+    super.key,
+    required this.tenantDetails,
+    required this.onEditTap,
+    required this.onDeleteTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Padding(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Kiracı Bilgileri'),
+        backgroundColor: Colors.teal,
+      ),
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              'Kiracı Bilgileri',
+            _buildInfoCard(
+              icon: Icons.person,
+              label: 'Adı',
+              value: tenantDetails['tenant_name'],
             ),
-            const SizedBox(height: 8.0),
-            _buildInfoRow('Adı', tenantDetails['tenant_name']),
-            _buildInfoRow('Soyadı', tenantDetails['tenant_surname']),
-            _buildInfoRow('Adres', tenantDetails['address']),
-            _buildInfoRow('Telefon', tenantDetails['phone']),
-            _buildInfoRow('Kira Tutarı', '${tenantDetails['rent_amount']} TL'),
-            _buildInfoRow('Sözleşme Süresi', '${tenantDetails['contract_duration']} ay'),
+            _buildInfoCard(
+              icon: Icons.person_outline,
+              label: 'Soyadı',
+              value: tenantDetails['tenant_surname'],
+            ),
+            _buildInfoCard(
+              icon: Icons.home,
+              label: 'Adres',
+              value: tenantDetails['address'],
+            ),
+            _buildInfoCard(
+              icon: Icons.phone,
+              label: 'Telefon',
+              value: tenantDetails['phone'],
+            ),
+            _buildInfoCard(
+              icon: Icons.attach_money,
+              label: 'Kira Tutarı',
+              value: '${tenantDetails['rent_amount']} TL',
+            ),
+            _buildInfoCard(
+              icon: Icons.calendar_today,
+              label: 'Sözleşme Süresi',
+              value: '${tenantDetails['contract_duration']} ay',
+            ),
           ],
         ),
+      ),
+      floatingActionButton: SpeedDial(
+        animatedIcon: AnimatedIcons.menu_close,
+        backgroundColor: Colors.teal,
+        children: [
+          SpeedDialChild(
+            child: const Icon(Icons.edit),
+            label: 'Düzenle',
+            onTap: onEditTap,
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.delete),
+            label: 'Sil',
+            backgroundColor: Colors.red,
+            onTap: onDeleteTap,
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildInfoRow(String label, String? value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        children: [
-          Text(
-            '$label: ',
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
-          Expanded(
-            child: Text(value ?? 'Bilgi mevcut değil'),
-          ),
-        ],
+  Widget _buildInfoCard({required IconData icon, required String label, required String? value}) {
+    return Card(
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            Icon(icon, color: Colors.teal),
+            const SizedBox(width: 16.0),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
+                      color: Colors.teal,
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  Text(
+                    value ?? 'Bilgi mevcut değil',
+                    style: const TextStyle(fontSize: 14.0, color: Colors.black87),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
