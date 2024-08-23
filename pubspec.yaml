@@ -26,6 +26,8 @@ dependencies:
   circle_nav_bar: ^2.1.0+1
   get: ^4.6.6
   iconsax: ^0.0.8
+  hexcolor: ^3.0.1
+  google_fonts: ^6.2.1
   
 flutter_icons:
   android: true
@@ -47,3 +49,4 @@ flutter:
     - assets/resimler/ikinci.png
     - assets/resimler/dorduncu.png
     - assets/resimler/ucuncu.png
+    - assets/resimler/t_logo.png

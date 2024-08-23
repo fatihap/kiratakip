@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:kiratakip/auth/sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../auth/widgets/sign_in_form.dart';
 import '../classes/constants.dart';
 import '../widgets/addTenantPage/add_tenant_page.dart';
 import 'tenant_card.dart';
@@ -70,7 +70,7 @@ class _TenantListPageState extends State<TenantListPage>
     await prefs.clear();
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => SignInForm()),
+      MaterialPageRoute(builder: (context) => LoginPage()),
     );
   }
 

@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: MaterialApp(
         title: 'Landlord App',
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         //    home: isFirstLaunch ? const IntroScreen() : LoginPage(),
         home: LoginScreen(),
-        //   home:  LoginPage(),
+      //     home:  LoginPage(),
       ),
     );
   }
