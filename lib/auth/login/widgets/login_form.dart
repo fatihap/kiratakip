@@ -28,6 +28,7 @@ class _TLoginFormState extends State<TLoginForm> {
   final TextEditingController _passwordController = TextEditingController();
   bool _passwordVisible = false;
   bool _rememberMe = true;
+  bool _isLoading = false;  // Add this state variable
 
   @override
   void initState() {
@@ -64,6 +65,10 @@ class _TLoginFormState extends State<TLoginForm> {
 
   Future<void> _signIn() async {
     if (_formKey.currentState?.validate() ?? false) {
+      setState(() {
+        _isLoading = true;  // Start loading
+      });
+
       final response = await http.post(
         Uri.parse('${Constants.apiUrl}/login'),
         headers: {'Content-Type': 'application/json'},
@@ -72,6 +77,10 @@ class _TLoginFormState extends State<TLoginForm> {
           'password': _passwordController.text,
         }),
       );
+
+      setState(() {
+        _isLoading = false;  // Stop loading
+      });
 
       final responseData = jsonDecode(response.body);
 
@@ -102,7 +111,6 @@ class _TLoginFormState extends State<TLoginForm> {
             builder: (context) => MainPage(user: user, token: token),
           ),
         );
-
       } else {
         String errorMessage = 'Giriş başarısız.';
         if (responseData is Map<String, dynamic> &&
@@ -130,6 +138,7 @@ class _TLoginFormState extends State<TLoginForm> {
         children: [
           TextFormField(
             controller: _emailController,
+            enabled: !_isLoading,  // Disable while loading
             decoration: const InputDecoration(
               prefixIcon: Icon(Iconsax.direct_right),
               labelText: TTexts.email,
@@ -149,6 +158,7 @@ class _TLoginFormState extends State<TLoginForm> {
           ),
           TextFormField(
             controller: _passwordController,
+            enabled: !_isLoading,  // Disable while loading
             obscureText: !_passwordVisible,
             decoration: InputDecoration(
               prefixIcon: const Icon(Iconsax.password_check),
@@ -177,37 +187,45 @@ class _TLoginFormState extends State<TLoginForm> {
                 children: [
                   Checkbox(
                     value: _rememberMe,
-                    onChanged: (value) {
-                      setState(() {
-                        _rememberMe = value!;
-                      });
-                    },
+                    onChanged: _isLoading
+                        ? null
+                        : (value) {
+                            setState(() {
+                              _rememberMe = value!;
+                            });
+                          },
                   ),
                   const Text(TTexts.rememberMe),
                 ],
               ),
               TextButton(
-                onPressed: () => Get.to(() => const ForgetPassword()),
+                onPressed: _isLoading
+                    ? null
+                    : () => Get.to(() => const ForgetPassword()),
                 child: const Text(TTexts.forgetPassword),
               ),
             ],
           ),
           const SizedBox(height: TSizes.spaceBtwSections),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-              ),
-              onPressed: _signIn,
-              child: const Text(TTexts.signIn),
-            ),
-          ),
+          _isLoading
+              ? const CircularProgressIndicator()  // Show loading spinner
+              : SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                    ),
+                    onPressed: _signIn,
+                    child: const Text(TTexts.signIn),
+                  ),
+                ),
           const SizedBox(height: TSizes.spaceBtwSections),
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              onPressed: () => Get.to(() => const SignUpScreen()),
+              onPressed: _isLoading
+                  ? null
+                  : () => Get.to(() => const SignUpScreen()),
               child: const Text(TTexts.createAccount),
             ),
           ),
