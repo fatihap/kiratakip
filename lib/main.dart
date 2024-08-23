@@ -11,7 +11,6 @@ void main() async {
 
   final prefs = await SharedPreferences.getInstance();
   final isFirstLaunch = prefs.getBool('isFirstLaunch') ?? true;
-
   runApp(MyApp(isFirstLaunch: isFirstLaunch));
 }
 
@@ -22,7 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: MaterialApp(
         title: 'Landlord App',
@@ -32,7 +30,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         //    home: isFirstLaunch ? const IntroScreen() : LoginPage(),
         home: LoginScreen(),
-      //     home:  LoginPage(),
+        //   home:  LoginPage(),
       ),
     );
   }

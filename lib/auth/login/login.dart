@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +23,6 @@ class LoginScreen extends StatelessWidget {
             const TLoginHeader(),
             const TLoginForm(),
             const SizedBox(height: TSizes.spaceBtwSections),
-            TFormDivider(dividerText: TTexts.orSignInWith.capitalize!),
             const SizedBox(height: TSizes.spaceBtwSections),
           ],
         ),

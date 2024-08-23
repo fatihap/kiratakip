@@ -10,13 +10,23 @@ ThemeData lightTheme = ThemeData(
   primaryColorLight: Colors.tealAccent[400],
   scaffoldBackgroundColor: Colors.white,
   cardColor: Colors.white,
-
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: WidgetStatePropertyAll(
+        HexColor('#4D47C3'),
+      ),
+    ),
+  ),
   textTheme: GoogleFonts.poppinsTextTheme(
     TextTheme(
       headlineLarge: TextStyle(
-          color: HexColor('#4D47C3'), fontWeight: FontWeight.bold, fontSize: 24),
+          color: HexColor('#4D47C3'),
+          fontWeight: FontWeight.bold,
+          fontSize: 24),
       headlineMedium: TextStyle(
-          color: HexColor('#4D47C3'), fontWeight: FontWeight.bold, fontSize: 20),
+          color: HexColor('#4D47C3'),
+          fontWeight: FontWeight.bold,
+          fontSize: 20),
       bodyLarge: const TextStyle(color: Colors.black87, fontSize: 16),
       bodyMedium: const TextStyle(color: Colors.black54, fontSize: 14),
     ),
@@ -25,7 +35,6 @@ ThemeData lightTheme = ThemeData(
       textStyle: const TextStyle(color: Colors.black54, fontSize: 14),
     ),
   ),
-  
   iconTheme: IconThemeData(color: Colors.teal[700]),
   appBarTheme: AppBarTheme(
     color: Colors.teal[700],
@@ -59,7 +68,6 @@ ThemeData darkTheme = ThemeData(
   primaryColorDark: Colors.tealAccent[700],
   scaffoldBackgroundColor: Colors.grey[900],
   cardColor: Colors.grey[800],
-
   textTheme: GoogleFonts.poppinsTextTheme(
     TextTheme(
       headlineLarge: TextStyle(
@@ -74,7 +82,6 @@ ThemeData darkTheme = ThemeData(
       bodyMedium: const TextStyle(color: Colors.blue, fontSize: 14),
     ),
   ),
-  
   iconTheme: IconThemeData(color: Colors.tealAccent[200]),
   appBarTheme: AppBarTheme(
     color: Colors.teal[900],
